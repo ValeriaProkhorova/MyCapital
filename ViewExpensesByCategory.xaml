@@ -1,0 +1,89 @@
+﻿<Window x:Class="MyCapital.ViewExpensesByCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="ViewExpensesByCategory" Height="450" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+Background="Transparent" >
+    
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/ViewExpensesByCategoryStyle.xaml" />
+    </Window.Resources>
+
+
+    <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad" MouseDown="Border_MouseDown">
+        <Grid  Height="550"  x:Name="Pagination" Background="{StaticResource ColorElement}">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+            
+            <!--ОБЩИЕ СВЕДЕНИЯ -->
+        <Label Content="Общие сведения" Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" FontSize="30"
+        HorizontalAlignment="Center" Grid.Row="0"/>
+              
+            <!--КНОПКИ В ПРАВОМ УГЛУ-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+               
+                <Button Style="{StaticResource ButtonExpenses}" Click="DateSelectionClick">
+                <fa:IconImage Icon="Calendar" Style="{StaticResource ExpensesButtonIcon}"/>
+            </Button>
+                
+                <Button Style="{StaticResource ButtonExpenses}" Click="DowloadWorld">
+                    <fa:IconImage Icon="Download" Style="{StaticResource ExpensesButtonIcon}"/>
+                </Button>
+                <Button Style="{StaticResource ButtonExpenses}" Click="BtnCloseClick">
+                    <fa:IconImage Icon="WindowClose" Style="{StaticResource ExpensesButtonIcon}" />
+            </Button>
+        </StackPanel>
+
+
+
+            <!-- ОТОБРАЖЕНИЕ ДАННЫХ-->
+            <Grid Grid.Row="1">
+                <ScrollViewer>
+                    <ListView Background="{StaticResource ColorElement}" x:Name="ListViewExpensesCategory" BorderThickness="0" >
+
+                        <ListView.Resources >
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                          
+                            <GridView>
+                                <!--КАТЕГОРИЯ-->
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Button  Content="{Binding Categories}"  Style="{StaticResource ButtonListView}" 
+                                                         Tag="{Binding Categories}" Click="SelectCategory_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <!--СУММА-->
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Label  Content="{Binding Summ}" FontWeight="Bold" Foreground="{StaticResource cs_ButtonAndText}"   
+                  FontSize="18" FontFamily="{StaticResource FY}" Margin="100 0 10 0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

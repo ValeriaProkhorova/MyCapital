@@ -1,0 +1,96 @@
+﻿<Window x:Class="MyCapital.EnterSavings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+         xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="EnterSavings" Height="550" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+Background="Transparent">
+
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/EnterTheExpenseStyle.xaml" />
+    </Window.Resources>
+
+
+    <Grid>
+        <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad"/>
+
+        <Border Background="{StaticResource ColorOne}" CornerRadius="20" Margin="200 60 200 60"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+
+
+
+                <!--Кнопка справа наверху Cвернуть -->
+                <Button Style="{StaticResource ButtonExpenses}" Margin="0 5 5 0" x:Name="BtnMinimize" Click="BtnMinimizeClick">
+                    <fa:IconImage Icon="WindowMinimize" Style="{StaticResource ExpensesButtonIcon}" />
+                </Button>
+
+                <!--Кнопка справа наверху Развернуть -->
+                <Button x:Name="BtnMaximize" Margin="0 5 5 0" Style="{StaticResource ButtonExpenses}" Click="BtnMaximizeClick">
+                    <fa:IconImage Icon="WindowMaximize" Style="{StaticResource ExpensesButtonIcon}" />
+                </Button>
+
+
+                <!--Кнопка справа наверху Закрыть -->
+                <Button x:Name="BtnClose" Margin="0 5 5 0" Style="{StaticResource ButtonExpenses}" Click="BtnCloseClick">
+                    <fa:IconImage Icon="WindowClose" Style="{StaticResource ExpensesButtonIcon}" />
+                </Button>
+            </StackPanel>
+
+            <!--ОСНОВНАЯ СТРАНИЦА -->
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 30 0 0">
+
+
+                <Label Content="Введите данные" FontFamily="{StaticResource FY}" FontSize="15" Padding="0" Margin="-1.5 10 0 5" HorizontalAlignment="Center"
+Foreground="{StaticResource cs_ButtonAndText }"/>
+
+                <!-- Выбор даты-->
+                <DatePicker Style="{StaticResource DatePickerStyle}" Tag="Дата"
+          CalendarStyle="{StaticResource DataPickerCalendarStyle}" Name="DataPicker">
+                </DatePicker>
+
+                <!-- Выбор счета -->
+                <ComboBox Style="{DynamicResource ComboBoxStyle1}" Tag="На счет" x:Name="CBScore"
+         SelectionChanged="CBScore_SelectionChanged" >
+
+                </ComboBox>
+
+                <!-- Выбор категории -->
+                <ComboBox Style="{DynamicResource ComboBoxStyle1}" Tag="Категория" x:Name="CBCategory" 
+         SelectionChanged="CBCategory_SelectionChanged">
+                </ComboBox>
+
+
+                <!-- Ввести Сумму -->
+                <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  Name="SummTextBox"  />
+
+                <!-- Комментарий-->
+                <TextBox Style="{StaticResource tbox_Comment}" Tag="Комментарий" AcceptsReturn="True" TextWrapping="Wrap" Name="CommentTextBox"/>
+
+                <!-- Кнопка-->
+                <Button Content="Добавить запись" Style="{StaticResource bt_ButtonStyle}" Click="AddSavings" x:Name="ButtonAddUpdate"/>
+
+
+            </StackPanel>
+
+        </Grid>
+
+
+    </Grid>
+</Window>

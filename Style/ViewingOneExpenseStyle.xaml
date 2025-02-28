@@ -1,0 +1,162 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
+
+
+    <SolidColorBrush x:Key="cs_BorderBrush" Color="#FF97CEDA"/>
+
+    <SolidColorBrush x:Key="cs_Watermark" Color="#bdb2b5"/>
+
+    <SolidColorBrush x:Key="cs_TextColor" Color="#FF333333"/>
+
+    <SolidColorBrush x:Key="cs_RBBackground" Color="#3eff92"/>
+
+    <Style x:Key="ButtonExpenses" TargetType="Button"> 
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="FontWeight" Value="Black" />
+        <Setter Property="FontFamily" Value="Cricket" />
+        <Setter Property="Margin" Value="5 0 0 0" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--при наведении-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#00ffa9"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ExpensesButtonIcon" TargetType="fa:IconImage">
+        <Setter Property="Width" Value="23" />
+        <Setter Property="Height" Value="23" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+    </Style>
+
+
+    <!--TextBox Style Сумма-->
+    <Style x:Key="tbox_PeopleIconPlaceholder" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Padding" Value="0 5 5 4"/>
+        <Setter Property="Margin" Value="0 2 0 0" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder" BorderBrush="{StaticResource cs_BorderBrush}"
+                      BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="5 0 0 0"
+                                    HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <!--Текст внутри элемента  Content="{TemplateBinding Tag}"-->
+                            <Label x:Name="Watermark" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource cs_Watermark}"
+                             Visibility="Collapsed" Padding="5 0 20 0" Content="{TemplateBinding Text}" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--TextBox Style Комментарий-->
+
+    <Style x:Key="tbox_Comment" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Height" Value="90" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{StaticResource cs_BorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Padding" Value="0 5 5 4"/>
+        <Setter Property="Margin" Value="0 3 0 0" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder" BorderBrush="{StaticResource cs_BorderBrush}"
+       BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="5 0 0 0"
+                     HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label x:Name="Watermark" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource cs_Watermark}"
+              Visibility="Collapsed" Padding="5 0 20 0" Content="{TemplateBinding Tag}" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+   
+</ResourceDictionary>

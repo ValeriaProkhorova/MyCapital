@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Capital.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DateSelection.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Diagramma.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DiagrammaIncome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EnterIncome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EnterSavings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EnterTheExpense.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MyMessageBoxNotifications.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MyMessageBoxYesNo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PlanningReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Translations.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdateCategories.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UpdatePlanning.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewExpensesByCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewIncomeByCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingExpensesneOneCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingIncomeOneCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingOneExpense.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingOneIncome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingOneSaving.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewingSavingsOneCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ViewSavingsByCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Capital.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Categories.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DateSelection.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Diagramma.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DiagrammaIncome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EnterIncome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EnterSavings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EnterTheExpense.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MyMessageBoxNotifications.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MyMessageBoxYesNo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Planning.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PlanningReport.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\CategoriesStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\DiagrammStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\EnterTheExpenseStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\MyMessageBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\PlanningStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ViewExpensesByCategoryStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ViewingOneExpenseStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Translations.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UpdateCategories.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UpdatePlanning.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="User Controls\InfoCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewExpensesByCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewIncomeByCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingExpensesneOneCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingIncomeOneCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingOneExpense.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingOneIncome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingOneSaving.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewingSavingsOneCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ViewSavingsByCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,72 @@
+﻿<Window x:Class="MyCapital.ViewingOneSaving"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+         xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Title="ViewingOneSaving" Height="450" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/ViewingOneExpenseStyle.xaml" />
+    </Window.Resources>
+
+    <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad" MouseDown="Border_MouseDown">
+
+        <Grid  Height="450"  x:Name="Pagination" Background="{StaticResource ColorElement}">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="50"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--Кнопки в правом верхнем углу-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <Button Style="{StaticResource ButtonExpenses}" Click="UpdateBtn">
+                    <fa:IconImage Icon="SquarePen" Style="{StaticResource ExpensesButtonIcon}"/>
+                </Button>
+
+                <Button Style="{StaticResource ButtonExpenses}"  Click="DeleteSavingsClick">
+                    <fa:IconImage Icon="Trash" Style="{StaticResource ExpensesButtonIcon}"/>
+                </Button>
+                <Button Style="{StaticResource ButtonExpenses}" Click="Closebtn">
+                    <fa:IconImage Icon="WindowClose" Style="{StaticResource ExpensesButtonIcon}" />
+                </Button>
+            </StackPanel>
+
+
+
+            <StackPanel Grid.Row="1" Margin="0">
+                <!-- ДАТА-->
+                <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Дата:" 
+                   Margin="3 0 0 0"/>
+
+                <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  Name="DateTextBox"/>
+
+                <!-- КАТЕГОРИЯ-->
+
+                <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Категория:" 
+                Margin="3 0 0 0" />
+
+                <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  Name="CategoriesTextBox"/>
+
+                <!--СЧЕТ-->
+
+                <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Счет:" Margin="3 0 0 0"/>
+
+                <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  Name="ScoreTextBox"/>
+
+                <!-- СУММА -->
+                <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Сумма:" Margin="3 0 0 0" />
+
+                <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  Name="SummTextBox"/>
+
+                <!-- КОММЕНТАРИЙ-->
+                <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Комментарий:" Margin="3 0 0 0"/>
+
+                <TextBox Style="{StaticResource tbox_Comment}"  AcceptsReturn="True" TextWrapping="Wrap" Name="CommentTextBox" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

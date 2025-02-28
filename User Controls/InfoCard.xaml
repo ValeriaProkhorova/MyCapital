@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MyCapital.User_Controls.InfoCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyCapital.User_Controls"
+            xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" Name="infoCard" Width="316" Height="140">
+      <!--создание трех верхних квадратов с цифрами и иконками-->
+    <Border Margin="0 0 25 0"  Background="{StaticResource ColorElement}">
+     
+        <Border.Clip>
+            <RectangleGeometry RadiusX="15" RadiusY="15" Rect="0,0,291,140"/>
+        </Border.Clip>
+        
+        <Grid>
+            <!--фигура полукруг-->
+            <Ellipse Width="230" Height="230" Margin="0 -130 -90 0" HorizontalAlignment="Right">
+                <Ellipse.Fill>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Color="{Binding Path=EllipseBackground1,ElementName=infoCard}" Offset="0"/>
+                        <GradientStop Color="{Binding Path=EllipseBackground2,ElementName=infoCard}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            
+               <!--объявление и стиль иконки в квадрате-->
+            <fa:IconImage Icon="{Binding Path=Icon,ElementName=infoCard}" Margin="0 0 25 25" Width="60" Height="60" Foreground="#ffffff"
+                          HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <StackPanel Margin="0 0 25 25" VerticalAlignment="Bottom">
+                <TextBlock Text="{Binding Path=Title,ElementName=infoCard}" Foreground="#005538" FontSize="13" FontFamily ="{StaticResource FY}"/>
+                <TextBlock Text="{Binding Path=Number,ElementName=infoCard}" Foreground="#005538" FontSize="28"  FontFamily ="{StaticResource FY}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="MyCapital.DateSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+        Title="DateSelection" Height="200" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+  Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/EnterTheExpenseStyle.xaml" />
+    </Window.Resources>
+    <Grid>
+    <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad"/>
+      
+        <StackPanel   Background="{StaticResource ColorOne}">
+        <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Начальная дата:"/>
+        <DatePicker x:Name="StartDatePicker" Style="{StaticResource DatePickerStyle}" CalendarStyle="{StaticResource DataPickerCalendarStyle}"/>
+            <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Конечная дата:"/>
+            <DatePicker x:Name="EndDatePicker" Style="{StaticResource DatePickerStyle}" CalendarStyle="{StaticResource DataPickerCalendarStyle}"/>
+            <StackPanel Orientation="Horizontal">
+        <Button Content="Выбрать дату" Style="{StaticResource bt_ButtonStyle}"  Click="DateSelectionClick" HorizontalAlignment="Center"/>
+        <Button Content="Отмена" Style="{StaticResource bt_ButtonStyle}"  Click="CloseDate" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

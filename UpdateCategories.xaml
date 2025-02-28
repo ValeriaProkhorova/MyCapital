@@ -1,0 +1,34 @@
+﻿<Window x:Class="MyCapital.UpdateCategories"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+        Title="UpdateCategories" Height="150" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/EnterTheExpenseStyle.xaml" />
+    </Window.Resources>
+    <Grid>
+        <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad"/>
+
+        <StackPanel>
+            
+        <Label Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" Content="Введите название категории:" 
+             Margin="3 0 0 0" />
+
+            <TextBox  Style="{StaticResource tbox_PeopleIconPlaceholder}"  x:Name="TextBoxTitleCategories"/>
+      
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Margin="0 45 0 0">
+            <!-- Кнопка-->
+            <Button Content="Внести изменения" Style="{StaticResource bt_ButtonStyle}" Click="AddCategories" />
+            <!-- Кнопка-->
+            <Button Content="Отмена" Style="{StaticResource bt_ButtonStyle}" Click="CloseClick" />
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

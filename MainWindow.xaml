@@ -1,0 +1,309 @@
+﻿<Window x:Class="MyCapital.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"             
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+         xmlns:uc="clr-namespace:MyCapital.User_Controls"
+          Title=""  Height="740" Width="1360" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+  Background="{StaticResource ColorOne}" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <!-- Левое окно-->
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--Левое меню-->
+        <Border CornerRadius="0 10 0 10" Background="{StaticResource ColorElement}" Margin="0">
+            <StackPanel>
+                
+                <!--Дизайн значка -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 35 0 0">
+                    <Border  Width="40" Height="40" BorderBrush="{StaticResource cs_ButtonAndText}" Background="{StaticResource ColorElement}" BorderThickness="4">
+                        <TextBlock Text="К" Foreground="{StaticResource cs_ButtonAndText}" FontSize="22" FontWeight="Black" TextAlignment="Center" VerticalAlignment="Center"
+                          FontFamily="Cricket"/>
+                    </Border>
+                    
+                    <!--Надпись капитал -->
+                    <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
+                        <TextBlock Text="Капитал" FontSize="15" Margin="0 0 0 5" Foreground="{StaticResource cs_ButtonAndText}" FontWeight="Black"
+                         FontFamily="{StaticResource FY}" />
+                        <TextBlock Text="Планирование бюджета" FontSize="11" Margin="0 0 0 5" Foreground="{StaticResource cs_ButtonAndText}" FontFamily="{StaticResource FY}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Раздедитель-->
+                <Separator Height="0.8" Margin="20,30" Background="#00aa71"/>
+                
+                <!--Меню с кнопками слева-->
+                <!--1 BUTTON  Расходы -->
+                <Button Style="{StaticResource menuButton}"   Click="ClickViewExpensesByCategory">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="ShoppingCart" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Расходы" Style="{StaticResource menuButonText}"/>
+                    </StackPanel>
+                </Button>
+            
+                <!--2 BUTTON Доходы-->
+                <Button Style="{StaticResource menuButton}" Click="ClickVieIconByCategory">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Coins" Style="{StaticResource menuButtonIcon}" />
+                        <TextBlock Text="Доходы" Style="{StaticResource menuButonText}" />
+                    </StackPanel>
+                </Button>
+
+                <!--3 BUTTON Капитал-->
+                <Button Style="{StaticResource menuButton}" Click="ClickScore" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="CircleDollarToSlot" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Капитал" Style="{StaticResource menuButonText}" />
+                    </StackPanel>
+                </Button>
+                
+                <!--4 BUTTON   Планирование-->
+                <Button Style="{StaticResource menuButton}" Click="PlanningClick">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Calendar" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Планирование" Style="{StaticResource menuButonText}" />
+                    </StackPanel>
+                </Button>
+                <!--5 BUTTON Накопления-->
+                <Button Style="{StaticResource menuButton}" Click="SavingsClick">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Hourglass" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Накопления" Style="{StaticResource menuButonText}" />
+                    </StackPanel>
+                </Button>
+                <!--6 BUTTON Категории-->
+                <Button Style="{StaticResource menuButton}" Click="ClickCategories">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="List" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Категории" Style="{StaticResource menuButonText}" />
+                    </StackPanel>
+                </Button>
+               
+           
+                <!--7 BUTTON Диаграммы Расходов-->
+                <Button Style="{StaticResource menuButton}" Click="ShowDiagramm">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="ChartColumn" Style="{StaticResource menuButtonIcon}" />
+                        <TextBlock Text="Диаграмма Расходов" Style="{StaticResource menuButonText}"/>
+                    </StackPanel>
+                </Button>
+                <!--8 BUTTON Диаграммы доходов-->
+                <Button Style="{StaticResource menuButton}" Click="ShowDiagrammIncome">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="ChartLine" Style="{StaticResource menuButtonIcon}" />
+                        <TextBlock Text="Диаграмма Доходов" Style="{StaticResource menuButonText}"/>
+                    </StackPanel>
+                </Button>
+            
+                <!--10 BUTTON Закрыть-->
+
+                <Button Style="{StaticResource menuButton}" Click="CloseMain">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource menuButtonIcon}" />
+                        <TextBlock Text="Закрыть" Style="{StaticResource menuButonText}"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <!--дизайн все панели, фона, кроме левого окна-->
+        <Border Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown" Background="{StaticResource ColorOne}">
+            <!--Дизайн основной панели -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--Фильтрация день неделя год-->
+                    <RowDefinition Height="auto"/>
+                    <!--Отображения данных-->
+                    <RowDefinition Height="200"/>
+                    <!--Диаграмма и калькулятор-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Фильтрация день неделя год-->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+      Margin="0 0 30 20">
+                    <Button Content="День" Style="{StaticResource topmenuButton}" Click="btnDay" />
+                    <Button Content="Неделя" Style="{StaticResource topmenuButton}" Click="btnWeek"/>
+                    <Button Content="Месяц" Style="{StaticResource topmenuButton}" Click="btnMonth"/>
+                    <Button Content="Год" Style="{StaticResource topmenuButton}" Click="btnYear"/>
+                </StackPanel>
+
+                <!--Титольная надпись-->
+                <TextBlock Text="Общие сведения о бюджете" FontSize="26" Foreground="#005538" HorizontalAlignment="Left"
+      Margin="50 35 0 20" FontWeight="Black"
+                        FontFamily="{StaticResource FY}"/>
+
+                <!--Отображения данных на картах (квадратики на верху)-->
+                <Grid Grid.Row="1" Margin="50 20 15 40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <uc:InfoCard Grid.Column="0" Title="Доходы"  Icon="Ruble"  x:Name="InfoCardIncome"
+         Background1="#827bff" Background2="#d9b5ff" EllipseBackground1="#e4bbff" EllipseBackground2="#e4bbff"/>
+
+                    <uc:InfoCard Grid.Column="1" Title="Расходы"  x:Name="InfoCardExpenses"  Icon="ShoppingCart" 
+         Background1="#fd8a87" Background2="#f3ab92" EllipseBackground1="#fdb5a8" EllipseBackground2="#fdb89b"/>
+
+                    <uc:InfoCard Grid.Column="2" Title="Капитал" x:Name="InfoCardScore" Icon="Coins" 
+         Background1="#fc84cd" Background2="#fc8fae" EllipseBackground1="#fc8fae" EllipseBackground2="#ffabe6"/>
+
+                </Grid>
+
+
+
+                <!--Часть экрана с диаграммой и калькулятором -->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--Диаграмма пока только визуальная -->
+                    <Border CornerRadius="20" Padding="0" Background="{StaticResource ColorElement}" Margin="50 0 10 40">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 26">
+
+                                <TextBlock Text="Диаграмма Расходов" Style="{StaticResource titleText}"/>
+                            </StackPanel>
+                            
+                    
+
+
+                            <lvc:CartesianChart Grid.Row="1" Margin="0 0 0 25" Background="{StaticResource ColorElement}"  
+                                                x:Name="cartesianChart" Width="540">
+
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip Background="#24336a" Foreground="#d5e2ff"/>
+                                </lvc:CartesianChart.DataTooltip>
+
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis MinValue="0" MaxValue="7"  Labels="{Binding Labels}" ShowLabels="True">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator StrokeThickness="0"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis MinValue="0" MaxValue="10000"  ShowLabels="True">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator StrokeThickness="0"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+
+                                <lvc:CartesianChart.Series>
+                                 
+
+                                    <lvc:LineSeries Stroke="#ada4fd" StrokeThickness="2" PointGeometrySize="0" Values="{Binding SeriesCollection}">
+                                       <!-- <lvc:LineSeries.Fill>
+                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                <GradientStop Color="#b397e2" Offset="0.4"/>
+                                                <GradientStop Color="#6a6ae4" Offset="1.2"/>
+                                            </LinearGradientBrush>
+                                        </lvc:LineSeries.Fill> -->
+                                    </lvc:LineSeries>
+
+                                </lvc:CartesianChart.Series>
+
+
+
+                            </lvc:CartesianChart>
+
+                        </Grid>
+
+                    </Border>
+
+
+
+                    <!--Калькулятор-->
+                    <Border Grid.Column="1" CornerRadius="20" Padding="0 25" Background="{StaticResource ColorElement}" Margin="15 0 47 0">
+                        <DockPanel >
+
+                            <Grid Margin="5, 0, 5, 15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="2*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderBrush="#a5a5a5" Grid.Row="0" Grid.RowSpan="2" BorderThickness="3" CornerRadius="25"/>
+                                    <TextBlock x:Name="tbOut" FontSize="40" Foreground="White" Margin="20 0 20 20" Grid.Row="1" Text="{Binding Path=(local:Calculator.InputBuffer)}" TextAlignment="Right">
+
+                                    </TextBlock>
+                                    <TextBlock FontSize="20" Foreground="#A5A5A5" Margin="27 10 27 0" Grid.Row="0" Text="{Binding Path=(local:Calculator.OutputBuffer)}" TextAlignment="Right"/>
+                                </Grid>
+
+                                <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource greyButton}" Content="&#x27f5;"/>
+                                <Button Grid.Column="0" Grid.Row="2" Style="{StaticResource darkGreyButton}" Content="7"/>
+                                <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource darkGreyButton}" Content="4"/>
+                                <Button Grid.Column="0" Grid.Row="4" Style="{StaticResource darkGreyButton}" Content="1"/>
+                                <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource darkGreyButton}" Content="0"/>
+
+                                <Button Grid.Column="1" Grid.Row="1" Style="{StaticResource greyButton}" Content="CE"/>
+                                <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource darkGreyButton}" Content="8"/>
+                                <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource darkGreyButton}" Content="5"/>
+                                <Button Grid.Column="1" Grid.Row="4" Style="{StaticResource darkGreyButton}" Content="2"/>
+
+                                <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource greyButton}" Content="C"/>
+                                <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource darkGreyButton}" Content="9"/>
+                                <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource darkGreyButton}" Content="6"/>
+                                <Button Grid.Column="2" Grid.Row="4" Style="{StaticResource darkGreyButton}" Content="3"/>
+                                <Button Grid.Column="2" Grid.Row="5" Style="{StaticResource darkGreyButton}" Content="."/>
+
+                                <Button Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Content="=" IsDefault="True" Style="{StaticResource orangeButtonSigns}" />
+                                <Button Grid.Column="3" Grid.Row="1"   Content="/" Style="{StaticResource orangeButtonSigns}" />
+                                <Button Grid.Column="3" Grid.Row="2"   Content="*" Style="{StaticResource orangeButtonSigns}" />
+                                <Button Grid.Column="4" Grid.Row="1"   Content="-" Style="{StaticResource orangeButtonSigns}" />
+                                <Button Grid.Column="6" Grid.Row="1"   Content="+" Style="{StaticResource orangeButtonSigns}" />
+
+
+
+                                <Button Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Content="+ Доход"  Style="{StaticResource orangeButton}" Click="Button_Click_EnterIncome" Tag="{Binding Path=(local:Calculator.InputBuffer)}"/>
+                                <Button Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3" Content="+ Расход"  Style="{StaticResource orangeButton}"  Tag="{Binding Path=(local:Calculator.InputBuffer)}" 
+                                        Click="Button_Click_EnterTheExpenses" />
+                                <Button Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3" Content="Накопление"  Style="{StaticResource orangeButton}" Tag="{Binding Path=(local:Calculator.InputBuffer)}"
+                                        Click="ButtonClickEnterSavings"/>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+
+                </Grid>
+
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

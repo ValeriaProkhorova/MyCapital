@@ -1,0 +1,496 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
+
+
+
+    <!-- Стиль Windows button стиль кнопок закрыть свернуть развернуть-->
+    <Style x:Key="ButtonExpenses" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="FontWeight" Value="Black" />
+        <Setter Property="FontFamily" Value="Cricket" />
+        <Setter Property="Margin" Value="5 0 0 0" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--при наведении-->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#00ffa9"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ExpensesButtonIcon" TargetType="fa:IconImage">
+        <Setter Property="Width" Value="23" />
+        <Setter Property="Height" Value="23" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+    </Style>
+
+
+ 
+
+
+    <!--Стиль ComboBox выбор категории и выбор со счета -->
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border x:Name="Border"
+          Grid.ColumnSpan="2"
+          CornerRadius="5"
+          BorderBrush="{StaticResource cs_BorderBrush}"
+          BorderThickness="2"
+          SnapsToDevicePixels="True" >
+
+            </Border>
+            <Border Grid.Column="1">
+
+                <Path x:Name="Arrow" 
+            Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.80501 L0,-1.78168 L0,0Z"
+            Fill="{StaticResource cs_ButtonAndText}"
+            Stretch="Fill"
+            Height="7"
+            Width="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+
+
+            </Border>
+
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="Border" />
+                <Setter Property="Fill" Value="{StaticResource cs_ButtonAndText}" TargetName="Arrow" />
+            </Trigger>
+
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="Border" />
+                <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="Border" />
+            </Trigger>
+
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+        <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}"/>
+    </ControlTemplate>
+
+
+    
+    <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0 10 0 0" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <ToggleButton x:Name="ToggleButton" Template="{StaticResource ComboBoxToggleButton}"
+                             Grid.Column="2" Focusable="False" ClickMode="Press"
+                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+                   RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" 
+                                 Content="{TemplateBinding SelectionBoxItem}"
+                                 ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                 ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                 Margin="11 0 25 0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                 IsEnabled="True"/>
+                        <Label x:Name="Watermark" 
+                      VerticalAlignment="Center" HorizontalAlignment="Left" 
+                      Foreground="{StaticResource cs_Watermark}"
+                   Visibility="Collapsed" Padding="8 0 0 0" Content="{TemplateBinding Tag}" 
+                      FontFamily="Roboto" FontSize="11"/>
+                        <TextBox  x:Name="PART_EditableTextBox" Template="{StaticResource ComboBoxTextBox}"
+                         HorizontalAlignment="Left" VerticalAlignment="Center" Focusable="True"
+                         Visibility="Hidden"/>
+
+                        <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}"
+                      AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                            <!--!!!-->
+                            <Grid x:Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding MaxDropDownHeight}" 
+                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder" BorderThickness="1" 
+                               BorderBrush="{StaticResource ColorElement}"
+                               Background="{StaticResource ColorOne}"/>
+                                <ScrollViewer Margin="4 6 4 6" SnapsToDevicePixels="True" OverridesDefaultStyle="True"
+                                     Foreground="{StaticResource cs_TextColor}" FontFamily="Roboto"
+                                     FontSize="11"/>
+                                <StackPanel IsItemsHost="True" 
+                                   KeyboardNavigation.DirectionalNavigation="Contained">
+
+                                </StackPanel>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark" />
+                        </MultiTrigger>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                        </Trigger>
+
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll"  Value="False"  />
+                        </Trigger>
+
+                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="True">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0 2 0 0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--TextBox Style Сумма-->
+    <Style x:Key="tbox_PeopleIconPlaceholder" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Padding" Value="0 5 5 4"/>
+        <Setter Property="Margin" Value="0 10 0 0" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder" BorderBrush="{StaticResource cs_BorderBrush}"
+                      BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="5 0 0 0"
+                                    HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <!--Текст внутри элемента  Content="{TemplateBinding Tag}"-->
+                            <Label x:Name="Watermark" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource cs_Watermark}"
+                             Visibility="Collapsed" Padding="5 0 20 0" Content="{TemplateBinding Text}" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--TextBox Style Комментарий-->
+
+    <Style x:Key="tbox_Comment" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Height" Value="90" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{StaticResource cs_BorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}" />
+        <Setter Property="Padding" Value="0 5 5 4"/>
+        <Setter Property="Margin" Value="0 10 0 0" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder" BorderBrush="{StaticResource cs_BorderBrush}"
+       BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="5 0 0 0"
+                     HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label x:Name="Watermark" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource cs_Watermark}"
+              Visibility="Collapsed" Padding="5 0 20 0" Content="{TemplateBinding Tag}" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--Button_Style -->
+    <Style x:Key="bt_ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Foreground" Value="{StaticResource cs_ButtonAndText}"/>
+        <Setter Property="Margin" Value="33 13 0 0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="10" Background="{StaticResource cs_RBBackground}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#00ffa9" TargetName="border" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="BorderBrush" Value="#00ffa9" TargetName="border" />
+                            <Setter Property="BorderThickness" Value="2" TargetName="border" />
+                            <Setter Property="Background" Value="#00ffa9" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Стиль элементов для DATAPicker-->
+    <Style x:Key="tbox_TextPlaceholder" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{StaticResource cs_BorderBrush}" />
+        <Setter Property="Foreground" Value="Beige" />
+        <Setter Property="Padding" Value="5 4.5 5 4"/>
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="TxtBorder" BorderBrush="{StaticResource cs_BorderBrush}"
+           BorderThickness="2" CornerRadius="5" SnapsToDevicePixels="True">
+
+                        <Grid Margin="{TemplateBinding Padding}">
+
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" Grid.Column="1" Margin="0"
+                  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label x:Name="Watermark" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource cs_Watermark}"
+           Visibility="Collapsed" Padding="3 0 20 0" Content="{TemplateBinding Tag}" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="TxtBorder" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="TxtBorder" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Button_CalendarStyle-->
+    <Style x:Key="bt_CalendarStyle" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderThickness="0"
+    Background="{StaticResource ib_CalendarAct}" />
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ib_CalendarAct}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource ib_CalendarAct}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
+    <!--Style DATAPicker-->
+    <Style x:Key="DataPickerCalendarStyle" TargetType="{x:Type Calendar}">
+        <Setter Property="Foreground" Value="{StaticResource ColorElement}" />
+        <Setter Property="Background" Value="#70ff66" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorElement}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Calendar}">
+                    <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                        <CalendarItem x:Name="PART_CalendarItem" 
+                              Background="{TemplateBinding Background }"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"
+                              Style="{TemplateBinding CalendarItemStyle}"
+                              Margin="0 5 0 0"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
+        <Setter Property="Margin" Value="0 10 0 0" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Grid>
+                        <Border x:Name="Border" Grid.ColumnSpan="2" Height="35" Width="250" BorderThickness="2"
+                   BorderBrush="{StaticResource cs_BorderBrush}" CornerRadius="5" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="35"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox" Style="{StaticResource tbox_TextPlaceholder}"
+                                      BorderThickness="0"
+                                      Grid.Column="0"
+                                      FontFamily="Roboto" FontSize="11"
+                                      Foreground="{StaticResource cs_ButtonAndText}"
+                                      VerticalAlignment="Center" Padding="13 4 0 0"/>
+                                <Button x:Name="PART_Button" Style="{StaticResource bt_CalendarStyle}"
+                           Grid.Column="1"/>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom"
+                          PlacementTarget="{Binding ElementName=PART_TextBox}"
+                          StaysOpen="False" HorizontalOffset="17"/>
+                                <Label x:Name="Watermark" 
+                          VerticalAlignment="Center" HorizontalAlignment="Left" 
+                          Foreground="{StaticResource cs_Watermark}"
+                         Visibility="Collapsed" Padding="11 0 20 0" Content="{TemplateBinding Tag}" 
+                         FontFamily="Roboto" FontSize="11"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="Border" />
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource cs_ButtonAndText}" TargetName="Border" />
+                            <Setter Property="BorderThickness" Value="0.5 0.5 0.5 3" TargetName="Border" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" TargetName="Watermark"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+</ResourceDictionary>

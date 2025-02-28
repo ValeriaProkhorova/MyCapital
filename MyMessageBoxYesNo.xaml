@@ -1,0 +1,45 @@
+﻿<Window x:Class="MyCapital.MyMessageBoxYesNo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyCapital"
+        mc:Ignorable="d"
+           Height="200" Width="300"
+    WindowStyle="None" ResizeMode="NoResize"  Background="Transparent" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ResourceDictionary Source="/Style/MyMessageBoxStyle.xaml" />
+    </Window.Resources>
+    <Grid>
+    <Border Background="{StaticResource ColorElement}" CornerRadius="1" BorderThickness="2" BorderBrush="#80ffad">
+        <Grid>
+          
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="TitleText" Text="Подтверждение" 
+                     FontSize="18" FontWeight="Bold" 
+                     HorizontalAlignment="Left" Margin="77,10,0,10"
+                     Foreground="{StaticResource cs_ButtonAndText}" Grid.Row="0"
+                       FontFamily="{StaticResource FY}" Grid.Column="1"/>
+
+            <TextBlock x:Name="MessageText" 
+                     TextWrapping="Wrap" Margin="16,20,20,20" Grid.Row="1"  
+                       Foreground="{StaticResource cs_ButtonAndText}"
+                       FontFamily="{StaticResource FY}" Grid.Column="1"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" 
+                      Margin="33,10,0,10" Grid.Row="2" Grid.Column="1">
+                <Button Content="Да" IsDefault="True" Click="YesButton_Click" 
+                      Margin="5" Style="{StaticResource GreenButtonStyle}"/>
+                <Button Content="Нет" IsCancel="True" Click="NoButton_Click" 
+                      Margin="5" Style="{StaticResource RedButtonStyle}"/>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+    </Grid>
+</Window>
