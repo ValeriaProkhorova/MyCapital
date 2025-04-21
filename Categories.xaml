@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MyCapital"
         mc:Ignorable="d"
         xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        Title="Categories" Height="550" Width="520" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        Title="Categories" Height="450" Width="520" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
 Background="Transparent">
     <Window.Resources>
         <ResourceDictionary Source="/Style/CategoriesStyle.xaml" /> 
@@ -14,7 +14,7 @@ Background="Transparent">
 
 
     <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad">
-        <Grid  Height="550"  x:Name="Pagination" Background="{StaticResource ColorElement}">
+        <Grid  Height="430"  x:Name="Pagination" Background="{StaticResource ColorElement}">
             <Grid.RowDefinitions >
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
@@ -64,7 +64,7 @@ HorizontalAlignment="Center" Grid.Column="2" Click="SavingsCategoriesClick" Widt
             
             
             <Grid Grid.Row="1">
-                <ScrollViewer>
+                <ScrollViewer Height="380">
                     <ListView Background="{StaticResource ColorElement}" x:Name="ListViewCategories" BorderThickness="0" >
 
                         <ListView.Resources >

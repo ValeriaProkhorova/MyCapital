@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:MyCapital"
         xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="PlanningReport" Height="450" Width="490" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        Title="PlanningReport" Height="550" Width="490" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
 Background="Transparent">
     <Window.Resources>
         <ResourceDictionary Source="/Style/ViewExpensesByCategoryStyle.xaml" />
     </Window.Resources>
-    <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad">
-        <Grid Height="550"  x:Name="Pagination" Background="{StaticResource ColorElement}" >
+    <Border Background="{StaticResource ColorElement}" CornerRadius="12" BorderThickness="3" BorderBrush="#80ffad">
+        <Grid  x:Name="Pagination" Background="{StaticResource ColorElement}" >
             <Grid.RowDefinitions >
                 <RowDefinition Height="50"/>
                 <RowDefinition />
@@ -32,7 +32,7 @@ HorizontalAlignment="Center" Grid.Row="0"/>
 
 
             <Grid Grid.Row="1">
-                <ScrollViewer>
+                <ScrollViewer Name="scroll" Height="490">
                     <ListView Background="{StaticResource ColorElement}" x:Name="ListViewPlanningReport" BorderThickness="0" >
 
                         <ListView.Resources >

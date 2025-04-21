@@ -46,7 +46,7 @@ Background="Transparent" >
 
             <!-- ОТОБРАЖЕНИЕ ДАННЫХ-->
             <Grid Grid.Row="1">
-                <ScrollViewer>
+           
                     <ListView Background="{StaticResource ColorElement}" x:Name="ListViewCapital" BorderThickness="0" >
 
                         <ListView.Resources >
@@ -86,7 +86,7 @@ Background="Transparent" >
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </ScrollViewer>
+             
             </Grid>
 
         </Grid>

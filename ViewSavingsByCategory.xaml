@@ -14,7 +14,7 @@ Background="Transparent">
 
 
     <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad" MouseDown="Border_MouseDown">
-        <Grid  Height="550"  x:Name="Pagination" Background="{StaticResource ColorElement}">
+        <Grid   Height="430"  x:Name="Pagination" Background="{StaticResource ColorElement}">
             <Grid.RowDefinitions >
                 <RowDefinition Height="50"/>
                 <RowDefinition />
@@ -43,7 +43,7 @@ Background="Transparent">
 
             <!-- ОТОБРАЖЕНИЕ ДАННЫХ-->
             <Grid Grid.Row="1">
-                <ScrollViewer>
+                <ScrollViewer  Height="380" >
                     <ListView Background="{StaticResource ColorElement}" x:Name="ListViewSavingsCategory" BorderThickness="0" >
 
                         <ListView.Resources >

@@ -127,3 +127,4 @@ C:\Users\User\source\repos\MyCapital\obj\Debug\net8.0-windows\Translations.g.cs
 C:\Users\User\source\repos\MyCapital\obj\Debug\net8.0-windows\Translations.baml
 C:\Users\User\source\repos\MyCapital\obj\Debug\net8.0-windows\DiagrammaIncome.g.cs
 C:\Users\User\source\repos\MyCapital\obj\Debug\net8.0-windows\DiagrammaIncome.baml
+C:\Users\User\source\repos\MyCapital\obj\Debug\net8.0-windows\MyCapital.sourcelink.json

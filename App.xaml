@@ -317,8 +317,9 @@
         
         
         
-        <!--Стиль ScrollBar Прокрутки   ДОДЕЛАТЬ И ПРОВЕРИТЬ-->
+        <!--Стиль ScrollBar Прокрутки -->
 
+        <!-- Полоса прокрутки, кнопка внизу, стиль-->
         <Style x:Key="ScrollBarLineButtonBottomStyle" TargetType="{x:Type RepeatButton}">
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template">
@@ -332,6 +333,7 @@
             </Setter>
         </Style>
 
+        <!--Стиль кнопки прокрутки -->
         <Style x:Key="ScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="Focusable" Value="False"/>
@@ -395,7 +397,6 @@
             <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
         </Style>
 
-     
 
 
     </Application.Resources>

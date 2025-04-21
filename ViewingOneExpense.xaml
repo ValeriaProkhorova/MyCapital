@@ -12,9 +12,9 @@ Background="Transparent">
         <ResourceDictionary Source="/Style/ViewingOneExpenseStyle.xaml" />
     </Window.Resources>
 
-    <Border Background="{StaticResource ColorElement}" CornerRadius="20" BorderThickness="3" BorderBrush="#80ffad" MouseDown="Border_MouseDown">
+    <Border Background="{StaticResource ColorElement}" CornerRadius="10" BorderThickness="3" BorderBrush="#80ffad" MouseDown="Border_MouseDown">
         
-        <Grid  Height="450"  x:Name="Pagination" Background="{StaticResource ColorElement}">
+        <Grid  Height="445"  x:Name="Pagination" Background="{StaticResource ColorElement}">
             <Grid.RowDefinitions >
                 <RowDefinition Height="50"/>
                 <RowDefinition />
